@@ -1,0 +1,10 @@
+FROM golang:1.20-alpine
+
+WORKDIR /app
+RUN mkdir log
+
+RUN go install github.com/fullstorydev/grpcui/cmd/grpcui@latest
+COPY go/entrypoint_grpctest.sh .
+RUN chmod +x /app/entrypoint_grpctest.sh
+
+ENTRYPOINT [ "/app/entrypoint_grpctest.sh" ]

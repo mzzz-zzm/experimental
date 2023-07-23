@@ -1,0 +1,34 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: dotnet/Dockerfile
+      args:
+        - ENVIRONMENT=Development
+    ports:
+      - 5002:8080
+  protocompile:
+    build:
+      context: .
+      dockerfile: go/DockerfileGrpcSrv
+    volumes:
+      - ./go/proto:/app/proto
+      - ./go/go.mod:/app/go.mod
+      - ./go/go.sum:/app/go.sum
+  backend:
+    depends_on:
+      - protocompile
+    build:
+      context: .
+      dockerfile: go/Dockerfile
+  grpctest:
+    depends_on:
+      - backend
+    environment:
+      - BACKEND_ADDR=backend
+    build:
+      context: .
+      dockerfile: go/DockerfileGrpcTest
+    ports:
+      - 8080:50051

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package greet;
+
+option go_package = "github.com/mzzz-zzm/experimental/blazorapp1/go/protobuf/greet";
+// option go_package = "protobuf/greet";
+
+message HelloRequest {
+    string first_name=1;
+}
+
+message HelloResponse {
+    string result=1;
+}
+
+service HelloService {
+    rpc Greet(HelloRequest) returns (HelloResponse);
+}

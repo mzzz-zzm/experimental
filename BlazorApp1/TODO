@@ -1,0 +1,10 @@
+instead of Makefile, do the environment setup (compile proto, and distribute them to client(dotnet) and server (go)) by docker-compose
+why? b/c it's easy to have just a one environment (linux) to do compiling proto and go.
+for dotnet, I need to take a research for compiling blazor codes
+
+- try making gRPC web test tool
+- 'backend' service address can't be exposed to 'grpctest' service. --> need more research
+- --> feel like web-based test may not work with container.. in that case, use CLI-based test tool
+- at the same time, let's make golang client gRPC test app
+
+
