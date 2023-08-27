@@ -2,8 +2,8 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 as build
 WORKDIR /app
 
 COPY BlazorApp1.sln ./
-COPY ./BlazorApp1/BlazorApp1.csproj ./BlazorApp1/
-        
+COPY BlazorApp1/BlazorApp1.csproj ./BlazorApp1/
+
 RUN dotnet restore
 COPY . ./
 RUN dotnet publish -c Release -o out

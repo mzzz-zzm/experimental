@@ -2,8 +2,8 @@ version: '3'
 services:
   frontend:
     build:
-      context: .
-      dockerfile: dotnet/Dockerfile
+      context: dotnet # do not change this; in order for dotnet command to work
+      dockerfile: Dockerfile
       args:
         - ENVIRONMENT=Development
     ports:
